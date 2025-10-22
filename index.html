@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign in</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        .bg{
+            float: right;
+        }
+        .userip{
+            text-align: center;
+            padding-top: 3cm;
+            
+        }
+        .tb1{
+            padding-left: 20px;
+            height: 40px;
+            width: 300px;
+            border-radius: 10px;
+        }
+        .tb2{
+            padding-left: 20px;
+            height: 40px;
+            width: 300px;
+            border-radius: 10px;
+            -webkit-text-security:disc;
+        }
+        .button{
+            height: 40px;
+            width: 250px;
+            border-radius: 15px;
+            transition-delay: 0.25s;
+        }
+        .b1{
+            height: 35px;
+            width: 40px;
+            border-radius: 7px;
+            margin: 2.3px;
+        }
+        .b1:hover{
+            cursor: pointer;
+        }
+        .button:hover{
+            cursor: pointer;
+        }
+        .settings {
+            display: flex;
+            gap: 15px;
+            position: relative;
+            float: right;
+        }
+        .profile-icon {
+            cursor: pointer;
+            font-size: 20px;
+            color: white;
+            position: relative;
+        }
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            width: 250px;
+            text-align: left;
+        }
+        .profile-dropdown a {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        .profile-dropdown a:hover {
+            background-color: #ff4655;
+        }
+        .profile-dropdown a i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        .toggle {
+            margin-top: 15px;
+            cursor: pointer;
+            color: #ff4655;
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('profileDropdown');
+            const profileIcon = document.querySelector('.profile-icon');
+            if (!profileIcon.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+        function toggleProfileDropdown() {
+            const dropdown = document.getElementById('profileDropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+        function handleAuth(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const formTitle = document.getElementById('form-title').innerText;
+            if (formTitle === "Login") {
+                const savedUser = JSON.parse(localStorage.getItem(username));
+                if (savedUser && savedUser.password === password) {
+                    alert("Login successful!");
+                    window.location.href = "mainpage.html";
+                } else {
+                    alert("Invalid username or password.");
+                }
+            } else {
+                if (localStorage.getItem(username)) {
+                    alert("Username already exists. Please choose another one.");
+                } else {
+                    localStorage.setItem(username, JSON.stringify({ username, password }));
+                    alert("Account created successfully! You can now log in.");
+                    window.location.href = "mainpage.html";
+                }
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector('.toggle').addEventListener("click", toggleForm);
+        document.getElementById('auth-form').addEventListener("submit", handleAuth);
+        });
+        
+        function toggleForm() {
+            const title = document.getElementById('form-title');
+            const button = document.querySelector('.button');
+            const toggleText = document.querySelector('.toggle');
+            if (title.innerText === "Login") {
+                title.innerText = "Sign Up";
+                button.innerText = "Sign Up";
+                toggleText.innerText = "Already have an account? Login";
+            } else {
+                title.innerText = "Login";
+                button.innerText = "Login";
+                toggleText.innerText = "Don't have an account? Sign Up";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="bg">
+        <img src="riot.png">
+    </div>
+    <div style="height: 2px; width: 4px;"><img src="riot-logo4.png"></div>
+    <div class="settings">
+            <div class="profile-icon" onclick="toggleProfileDropdown()">👤</div>
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                <a href="Index.html"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+            </div>
+        </div>
+    <div class="userip">
+        <h1 id="form-title" style="font-size: 1.2cm;">Sign In</h1>
+        <input type="text" id="username" placeholder="USERNAME" class="tb1">
+        <br><br><br>
+        <input type="password" id="password" placeholder="PASSWORD" class="tb2">
+        <br><br><br>
+        <form id="auth-form"><div>
+            <input type="button" id="fb" class="b1" style="background-image: url(fb.png); padding-right: 49px;">
+            <input type="button" id="g" class="b1" style="background-image: url(g.png); padding-right: 49px;">
+            <input type="button" id="a" class="b1" style="background-image: url(a.png); padding-right: 49px;">
+            <input type="button" id="x" class="b1" style="background-image: url(x.png); padding-right: 49px;">
+            <input type="button" id="ps" class="b1" style="background-image: url(ps.png); padding-right: 49px;">
+        </div>
+        <br><br>
+        <button type="submit" class="button">Login</button></form>
+        <p class="toggle">Don't have an account? Sign Up</p>
+    </div>
+</body>
+</html>
