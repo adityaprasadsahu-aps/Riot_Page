@@ -19,7 +19,7 @@
             String pass = request.getParameter("userPass");
             if (id != null && pass != null) {
                 if (id.equals("admin") && pass.equals("1941")) {
-                    response.sendRedirect("mp.html");
+                    response.sendRedirect("mainpage.html");
                 } else {
                     out.println("<h2 style='color:red;'>Invalid ID or Password. Please try again.</h2>");
                     
