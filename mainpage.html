@@ -6,26 +6,22 @@
     <title>Riot Games: Bringing Players the Best Games</title>
     
     <link rel="icon" href="https://www.riotgames.com/static/favicon-32x32-0e9e7a2b239c803e04d8de2739723933.png" type="image/png">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
-        html {
+        html{
             scroll-behavior: smooth;
         }
 
-        body {
+        body{
             font-family: 'Montserrat', sans-serif;
-            background-repeat: no-repeat;
             color: white;
-            overflow-x: hidden;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background: rgb(65, 64, 64);
+            background: #333;
         }
 
         h1, h2, h3 {
@@ -33,13 +29,12 @@
             line-height: 1.2;
         }
 
-        a {
+        a{
             text-decoration: none;
             color: inherit;
-            transition: color 0.3s ease;
         }
 
-        img {
+        img{
             max-width: 100%;
             display: block;
         }
@@ -51,22 +46,15 @@
         }
 
         .main-header {
-            position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             padding: 1rem 0;
-            background-color: rgba(17, 17, 17, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid black;
+            background-color: #111;
         }
 
         .main-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 50px;
         }
 
         .riot-logo {
@@ -78,35 +66,23 @@
             display: flex;
             gap: 2.5rem;
             list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-links a {
-            font-weight: 500;
-            letter-spacing: 1px;
+            font-weight: 700;
             text-transform: uppercase;
             font-size: 0.9rem;
-            position: relative;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: rgb(184, 19, 19);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
+        .nav-links a:hover {
+            color: rgb(184, 19, 19);
         }
 
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 1rem;
         }
 
         .btn {
@@ -115,7 +91,6 @@
             cursor: pointer;
             font-weight: 700;
             text-transform: uppercase;
-            transition: all 0.3s ease;
         }
 
         .btn-primary {
@@ -124,73 +99,50 @@
             border-radius: 25px;
         }
         
-        .btn-primary:hover {
-            background-color: rgb(184, 19, 19);
-            transform: translateY(-2px);
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
+        .btn-primary:hover{
+            background-color: rgb(150, 15, 15);
         }
 
-        .hero {
-            height: 100vh;
+        .hero{
+            height: 80vh;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            overflow: hidden;
-        }
-
-        .hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translateX(-50%) translateY(-50%);
-            z-index: -2;
+            background: url('dev-doodles.jpg') no-repeat center center/cover; /*I have written the no-repeat center center/cover to fit the image */
         }
         
         .hero-overlay {
-            position: absolute;
+            position: absolute; /*position: fixed; can also be used but it did will make the layer much darker idk why*/
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(17,17,17,1) 0%, rgba(17,17,17,0.7) 50%, rgba(17,17,17,0.4) 100%);
-            z-index: -1;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1; /*A lower z-index number sends it closer to the bottom*/
+        } /*The image was lighter and hence it was used*/
+
+        .hero-content{
+            position: relative;
+            z-index: 2;
         }
 
-        .hero-content {
-            z-index: 1;
-        }
-
-        .hero-content h1 {
-            font-size: 5rem;
+        .hero-content h1{
+            font-size: 4rem;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 2px;
             margin-bottom: 1rem;
-            color: whitesmoke;
-            text-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
-        .hero-content p {
+        .hero-content p{
             font-size: 1.2rem;
             max-width: 600px;
             margin: 0 auto 2rem;
-            color: white;
         }
 
         .section {
-            padding: 6rem 0;
-            border-bottom: 1px black;
+            padding: 4rem 0;
         }
         
         .section-title {
@@ -198,32 +150,26 @@
             font-size: 2.5rem;
             text-transform: uppercase;
             margin-bottom: 3rem;
-            letter-spacing: 1.5px;
         }
 
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));   
             gap: 2rem;
         }
 
         .game-card {
-            background-color: grey;
+            background-color: rgb(0, 0, 0);
             border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid black;
-        }
-
-        .game-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .game-card-image {
             height: 400px;
             object-fit: cover;
             width: 100%;
+            background: #555;
         }
 
         .game-card-content {
@@ -235,6 +181,9 @@
             height: 40px;
             object-fit: contain;
             margin-bottom: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+            background: #000000;
         }
 
         .game-card-content p {
@@ -249,9 +198,16 @@
         }
 
         .news-card {
-            background: grey;
+            background: rgb(0, 0, 0);
             border-radius: 5px;
             overflow: hidden;
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #555;
         }
 
         .news-card-content {
@@ -277,7 +233,7 @@
         }
 
         .cta-section {
-            background: url('https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt5a86345a33142a7c/62916f4d2f1c84126f21655b/Careers_Jumbotron.jpg') no-repeat center center/cover;
+            background-color: #111;
             text-align: center;
         }
         
@@ -311,13 +267,12 @@
         }
 
         .social-links a {
-            font-size: 1.5rem;
+            font-size: 0.9rem;
             color: whitesmoke;
         }
         
         .social-links a:hover {
             color: rgb(184, 19, 19);
-            transform: scale(1.1);
         }
         
         .footer-logo {
@@ -330,11 +285,11 @@
             justify-content: center;
             gap: 2rem;
             list-style: none;
+            padding: 0;
             font-size: 0.9rem;
         }
 
         .footer-links a:hover {
-            color: whitesmoke;
             text-decoration: underline;
         }
         
@@ -344,84 +299,38 @@
             color: white;
             text-align: center;
         }
-        
-        .hidden {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        
-        .visible {
-            opacity: 1;
-            transform: translateY(0);
-        } 
-
-        .tiledBackground {
-            background-image: url("valorant_champions_paris_2025_lead.webp");
-            width: 30cm;
-            height: 30cm;
-            border: 2px solid;
-            color: pink;
-            background-repeat: no-repeat;
-        }
-
-        @media (max-width: 992px) {
-            .nav-links {
-                display: none;
-            }
-            .hamburger {
-                display: block;
-            }
-            .hero-content h1 {
-                font-size: 3.5rem;
-            }
-            .news-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            .hero-content p {
-                font-size: 1rem;
-            }
-            .section {
-                padding: 4rem 0;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .news-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-        }
 
     </style>
 </head>
+
+
+
+
+                                            <!--Style Ended here :p -->
+
+
+
+
+
 <body>
 
     <header class="main-header">
         <div class="container">
             <nav class="main-nav">
                 <a href="#">
-                    <svg class="riot-logo" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="IconChangeColor" height="200" width="200"><title>Riot Games</title><path d="M12.534 21.77l-1.09-2.81 10.52.54-.451 4.5zM15.06 0L.307 6.969 2.59 17.471H5.6l-.52-7.512.461-.144 1.81 7.656h3.126l-.116-9.15.462-.144 1.582 9.294h3.31l.78-11.053.462-.144.82 11.197h4.376l1.54-15.37Z" id="mainIconPathAttribute" fill="#ff0000"></path></svg>
+                    <svg class="riot-logo" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Riot Games</title><path d="M12.534 21.77l-1.09-2.81 10.52.54-.451 4.5zM15.06 0L.307 6.969 2.59 17.471H5.6l-.52-7.512.461-.144 1.81 7.656h3.126l-.116-9.15.462-.144 1.582 9.294h3.31l.78-11.053.462-.144.82 11.197h4.376l1.54-15.37Z" fill="#ff0000"></path></svg>
+                </a>
                 <ul class="nav-links">
                     <li><a href="#">Events</a></li>
                     <li><a href="#games">Our Games</a></li>
                     <li><a href="#news">News</a></li>
+                    <li><a href="https://riot-ping-checker-8fpr.vercel.app/">Check Ping</a></li>
                 </ul>
+                <!--<div class="nav-actions">
+                    <a href="https://riot-ping-checker-8fpr.vercel.app/" class="btn btn-primary">Check Ping</a>
+                </div>-->
                 <div class="nav-actions">
-                    <a href="#" class="btn btn-primary">Sign In</a>
-                    <div class="hamburger">
-                        <i class="fa-solid fa-bars"></i>
-                    </div>
+                    <a href="#" class="btn btn-primary">Profile</a>
                 </div>
             </nav>
         </div>
@@ -429,38 +338,36 @@
 
     <main>
         <section class="hero">
-        <div class="tiledBackground"></div>
-            <video class="hero-video" src="https://www.riotgames.com/darkroom/original/1e194592a8335805f15d3159048a6045:e13cf69c7d0e417a80b85a3068e42f63/lol-2024-season-start-video-1920x1080.mp4" autoplay muted loop playsinline></video>
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <!-- <h1>Valorant Champions Paris</h1> -->
-                <p"><img src="Screenshot 2025-09-19 182452.png" style="border-radius: 300px; margin-left: 540px"></p>
-                <!-- <a href="#games" class="btn btn-primary">Explore Our Games</a> -->
+                <h1>Riot Games</h1>
+                <p>Bringing Players the Best Games</p>
+                <a href="#games" class="btn btn-primary">Explore Our Games</a>
             </div>
         </section>
 
-        <section id="games" class="section hidden">
+        <section id="games" class="section">
             <div class="container">
                 <h2 class="section-title">Our Games</h2>
                 <div class="games-grid">
                     <div class="game-card">
-                        <img src="https://www.riotgames.com/darkroom/840/d08fe341e448a3136c6414777d85c485:b52f7504dd87b321be141a4e1a06587c/lol-card-bg-1800.jpg" alt="League of Legends" class="game-card-image">
+                        <img src="LOL-Main.avif" alt="League of Legends" class="game-card-image">
                         <div class="game-card-content">
-                            <img src="https://www.riotgames.com/darkroom/250/b52f7504dd87b321be141a4e1a06587c:092d514c330058b09335f47a9e2d3122/lol-logo-rendered-2024.png" alt="League of Legends Logo" class="game-card-logo">
+                            <img src="Lol-Logo.jpeg" alt="League of Legends Logo" class="game-card-logo">
                             <p>A 5v5 team-based strategy game where two teams of unique champions face off to destroy the other's base.</p>
                         </div>
                     </div>
                     <div class="game-card">
-                        <img src="https://www.riotgames.com/darkroom/840/e31f08f88c34c8969429b688c2f1f32a:8a4a58d6265e317c8005396659a72782/val-card-bg-1800.jpg" alt="VALORANT" class="game-card-image">
+                        <img src="valo-main.png" alt="VALORANT" class="game-card-image">
                         <div class="game-card-content">
-                             <img src="https://www.riotgames.com/darkroom/250/2960f031265f97f7e81b34382c4740e5:b559771120153f5873a2165b4c19cee8/val-logo-2023.png" alt="VALORANT Logo" class="game-card-logo">
+                             <img src="Valorant-Logo.png" alt="VALORANT Logo" class="game-card-logo">
                             <p>A 5v5 character-based tactical shooter where precise gunplay meets unique agent abilities.</p>
                         </div>
                     </div>
                     <div class="game-card">
-                        <img src="https://www.riotgames.com/darkroom/840/65913a863c329188a8d1678170c9b0e3:10e8d3568910052a2656920ac343c162/tft-card-bg-1800.jpg" alt="Teamfight Tactics" class="game-card-image">
+                        <img src="TFT-Main.png" alt="Teamfight Tactics" class="game-card-image">
                         <div class="game-card-content">
-                             <img src="https://www.riotgames.com/darkroom/250/4ed342a392815181b56a644f2e5bc004:d641d441618a56248386a51d454687be/tft-logo-rendered-2023.png" alt="TFT Logo" class="game-card-logo">
+                             <img src="Tft-logo.jpeg" alt="TFT Logo" class="game-card-logo">
                             <p>An eight-person free-for-all strategy game where you draft, position, and fight your way to the top.</p>
                         </div>
                     </div>
@@ -468,43 +375,43 @@
             </div>
         </section>
         
-        <section id="news" class="section hidden">
+        <section id="news" class="section">
             <div class="container">
                 <h2 class="section-title">Latest News</h2>
                 <div class="news-grid">
                     <div class="news-card">
-                        <img src="https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt560662d96c14b2d5/66d3a817dd457b049b49b3ae/Dev_We_made_the_Arcane_Art_Book_Header.jpg" alt="News Image 1">
-                        <div class="news-card-content">
-                            <p class="news-card-category">Dev</p>
-                            <h3>We Made 'Arcane: Bridging the Rift,' The Art Book</h3>
-                            <p class="news-card-date">September 12, 2025</p>
-                        </div>
-                    </div>
-                     <div class="news-card">
-                        <img src="https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt219d35c179c379a0/66cb4d1f2fd3c904944b7d15/Riot_Games_Esports_Research_Header.jpg" alt="News Image 2">
+                        <img src="Wild-rift.avif" alt="News Image 1">
                         <div class="news-card-content">
                             <p class="news-card-category">Esports</p>
-                            <h3>Researching the Future of Esports Fandom</h3>
-                            <p class="news-card-date">September 5, 2025</p>
+                            <h3>The largest Wild Rift community event is happening next month! Wild Rounds: SMASH will be making its return, November 14-16 in Vietnam! There will be creators from multiple regions and pros from China coming together to compete in 1v1’s, 5v5’s, and more. </h3>
+                            <p class="news-card-date">SOctober 10, 2025</p>
                         </div>
                     </div>
                      <div class="news-card">
-                        <img src="" alt="News Image 3">
+                        <img src="veto.jpg" alt="News Image 2">
                         <div class="news-card-content">
-                            <p class="news-card-category">Social Impact</p>
-                            <h3></h3>
-                            <p class="news-card-date">August 28, 2025</p>
+                            <p class="news-card-category">Valorant new agent changes</p>
+                            <h3>Veto is proven to be the most overpowered sentinel and we ACKNOWLEDGE this, so we are now nerfing Chamber. We will continue doing this till this agent gets a zero pick rate :P</h3>
+                            <p class="news-card-date">October 29, 2025</p>
+                        </div>
+                    </div>
+                     <div class="news-card">
+                        <img src="riot-dev.jpg" alt="News Image 3">
+                        <div class="news-card-content">
+                            <p class="news-card-category">Exciting news</p>
+                            <h3>League of Legends: Wild Rift Patch 6.3 Preview
+                            </h3>
+                            <p class="news-card-date">October 10, 2025</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section cta-section hidden">
-            <div class="hero-overlay"></div>
-            <div class="container" style="position: relative; z-index: 1;">
+        <section class="section cta-section">
+            <div class="container">
                 <h2>Join Us</h2>
-                <p>We're always looking for new talent to help us on our mission to be the most player-focused company in the world.</p>
+                <p>We're always looking for new talent to help us on our mission.</p>
                 <a href="#" class="btn btn-primary">See All Careers</a>
             </div>
         </section>
@@ -515,14 +422,14 @@
         <div class="container">
             <div class="footer-content">
                 <div class="social-links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">YouTube</a>
+                    <a href="#">LinkedIn</a>
                 </div>
                  <a href="#">
-                    <svg class="footer-logo" viewBox="0 0 100 37.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><path d="M48.4 0 31.8 28.1 15.3 0H0l26.9 37.1h13L66.7 0h-18.3zM81.8 3.6h-11v33.5h11V3.6zM100 3.6H89v33.5h11V3.6z" fill="#7e7e7e"></path></svg>
+                    <svg class="footer-logo" viewBox="0 0 100 37.1" xmlns="http://www.w3.org/2000/svg"></svg>
                 </a>
                  <ul class="footer-links">
                     <li><a href="#">Press</a></li>
@@ -537,21 +444,5 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            const hiddenElements = document.querySelectorAll('.hidden');
-            hiddenElements.forEach(el => observer.observe(el));
-        });
-    </script>
 </body>
 </html>
